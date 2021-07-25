@@ -1,0 +1,32 @@
+/* source: https://stackoverflow.com/questions/14739162/two-tone-background-split-by-diagonal-line-using-css */
+.background {
+    /* background-color: #7460bd;
+    background-image: -webkit-linear-gradient(30deg, #4430a0 50%, #60198f 50%); */
+    height: 100%;
+
+    background-color: rgb(116, 96, 189);
+    background-image: -webkit-linear-gradient(30deg, rgb(137 119 225) 50%, rgb(170 126 199) 50%);
+}
+
+.image {
+    height: 30vh;
+    width: 35vh;
+    margin: 0 auto;
+}
+
+.lineOne {
+    margin-top: 0;
+}
+
+.lineTwo {
+    margin-top: 0.2rem;
+}
+
+.url {
+    color: rgb(27, 22, 170);
+    cursor: pointer;
+}
+
+.url:hover {
+    text-decoration: underline;
+}
