@@ -6,7 +6,7 @@ const NotFoundPage = () => {
         <div className="container">
             <div className={classes.background}>
                 <div className="container-fluid">
-                    <img src="not-found.png" className={classes.image}></img> 
+                    <img src="images/not-found.png" className={classes.image}></img> 
                     <h1>Page Not Found</h1>
                     <p className={classes.lineOne}> 
                         The page you are currently trying to access does not exist. 
