@@ -32,3 +32,7 @@ a {
   justify-content: center;
   height: 100%;
 }
+
+ul {
+  list-style: none;
+}

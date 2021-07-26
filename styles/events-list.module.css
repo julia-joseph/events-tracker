@@ -1,0 +1,6 @@
+.event_items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #fdfdfd;
+}
