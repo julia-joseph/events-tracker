@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next/Link';
 import classes from '../styles/button.module.css';
 
 const Button = props => {
@@ -10,7 +10,7 @@ const Button = props => {
         )
     }
 
-    return <button className={props.button} onClick={props.onClick}>{props.children}</button>
+    return <button className={classes.button} onClick={props.onClick}>{props.children}</button>
 }
 
 export default Button;
