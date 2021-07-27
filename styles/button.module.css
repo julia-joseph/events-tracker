@@ -1,0 +1,15 @@
+.button {
+    background-color: indigo;
+    border: 1px solid rgb(51, 0, 87);
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+}
+
+.button:hover, .button:active {
+    background-color: rgb(102, 0, 175);
+    border-color: rgb(64, 3, 107);
+}
