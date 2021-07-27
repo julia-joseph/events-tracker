@@ -1,0 +1,15 @@
+.container {
+    border: 1px radius red;
+    background-color:rgb(226, 183, 183);
+    color: red;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem 20%;
+    border-radius: 6px;
+}
+
+.button {
+    text-align: center;
+}
