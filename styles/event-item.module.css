@@ -2,19 +2,21 @@
     border: 0.05px solid #d8d8d8;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     padding: 1.5rem;
-    min-width: 400px;
-    width: 40vh;
-    height: 50vh;
-    min-height: 500px;
     margin: 1rem;
     flex-wrap: wrap;
     background-color: whitw;
 }
 
 .image {
-    width: 40vh;
-    height: 30vh;
+    width: 100%;
+    object-fit: cover;
+    height: 10rem;
     min-height: 300px;
     border-radius: 0.25rem;
-    min-width: calc(400px - 3rem);
+}
+
+.button {
+    padding-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
 }

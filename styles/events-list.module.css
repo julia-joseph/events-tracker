@@ -1,6 +1,7 @@
 .event_items {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     background-color: #fdfdfd;
 }
