@@ -1,0 +1,46 @@
+.header {
+    width: 100%;
+    display: -moz-box;
+    display: flex;
+    -moz-box-pack: justify;
+    justify-content: space-between;
+    -moz-box-align: baseline;
+    align-items: baseline;
+    padding: 0.5rem 5%;
+    height: 4rem;
+    background-color: rgb(51 0 87);
+}
+
+.logo {
+    font-size: 1.25rem;
+    color: white;
+    font-family: 'Fira', sans-serif;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo a {
+    text-decoration: none;    
+    color: white;
+}
+
+.icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.5rem;
+}
+
+.icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+}
+  
