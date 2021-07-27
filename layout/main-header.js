@@ -7,12 +7,12 @@ const Header = (props) => {
     <header className={classes.header}>
       <div className={classes.logo}>
         <Link href="/">
-            <>
+          <>
             <span className={classes.icon}>
-            <EventIcon />
-          </span>
-          <span>EvEnts</span>
-            </>
+              <EventIcon />
+            </span>
+            <span>EvEnts</span>
+          </>
         </Link>
       </div>
       <nav className={classes.navigation}>
