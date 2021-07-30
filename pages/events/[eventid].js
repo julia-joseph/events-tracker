@@ -17,9 +17,9 @@ const EventPage = props => {
         </EventItem>
       }
       {!event &&
-        <Alert>
-          <p>Event does not exist!!</p>
-        </Alert>
+        <div>
+          <p>Loading...</p>
+        </div>
       }
     </div>
   )
@@ -31,7 +31,8 @@ export async function getStaticProps(context) {
   return {
     props: {
       event: event
-    }
+    },
+    revalidate: 30
   }
 }
 
@@ -39,7 +40,7 @@ export async function getStaticPaths() {
   const paths = await getEventIdParams();
   return {
     paths: paths,
-    fallback: false
+    fallback: 'blocking'
   }
 }
   

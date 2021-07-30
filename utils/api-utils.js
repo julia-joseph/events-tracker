@@ -25,6 +25,6 @@ export async function getEventById(id) {
 }
 
 export async function getEventIdParams() {
-    const events = await getEvents();
+    const events = await getFeaturedEvents();
     return events.map(event => ({ params: { eventId: event.id }}))
 }
