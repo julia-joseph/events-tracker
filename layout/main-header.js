@@ -1,5 +1,5 @@
 import classes from "../styles/header.module.css";
-import Link from "next/Link";
+import Link from "next/link";
 import EventIcon from "../icons/event-icon";
 
 const Header = (props) => {
