@@ -8,7 +8,7 @@ const Alert = (props) => {
                 {props.children}
             </div>
             <div className={classes.button}>
-                <Button link="/events">Show All Alerts</Button>
+                <Button link="/events">Show All Events</Button>
             </div>
         </>
     );
