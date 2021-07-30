@@ -1,14 +1,9 @@
-import { useRouter } from "next/router";
 import EventItem from "../../components/events/event-item";
-import { getEventById } from "../../dummy-data";
 import Alert from "../../ui/alert";
+import { getEventById, getEventIdParams } from "../../utils/api-utils";
 
-const EventPage = () => {
-  const router = useRouter();
-
-  const id = router.query.eventId;
-
-  const event = getEventById(id);
+const EventPage = props => {
+  const event = props.event;
 
   return (
     <div>
@@ -28,6 +23,24 @@ const EventPage = () => {
       }
     </div>
   )
+}
+
+export async function getStaticProps(context) {
+  const eventId = context.params.eventId;
+  const event = await getEventById(eventId);
+  return {
+    props: {
+      event: event
+    }
+  }
+}
+
+export async function getStaticPaths() {
+  const paths = await getEventIdParams();
+  return {
+    paths: paths,
+    fallback: false
+  }
 }
   
 export default EventPage;

@@ -19,3 +19,12 @@ export async function getFeaturedEvents() {
     return events.filter(event => event.isFeatured);
 }
 
+export async function getEventById(id) {
+    const events = await getEvents();
+    return events.find((event) => event.id === id);
+}
+
+export async function getEventIdParams() {
+    const events = await getEvents();
+    return events.map(event => ({ params: { eventId: event.id }}))
+}
