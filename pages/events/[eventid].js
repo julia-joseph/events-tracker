@@ -1,12 +1,20 @@
 import EventItem from "../../components/events/event-item";
-import Alert from "../../ui/alert";
-import { getEventById, getEventIdParams } from "../../utils/api-utils";
+import Head from "next/head";
+
+import {getEventById, getFeaturedEvents } from "../../utils/api-utils";
 
 const EventPage = props => {
   const event = props.event;
 
   return (
     <div>
+      <Head>
+        <title>{event.title}</title>
+        <meta
+          name="description"
+          content={event.description}
+        />
+      </Head>
       {event &&
         <EventItem
             id={event.id}
@@ -37,7 +45,9 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const paths = await getEventIdParams();
+  const events = await getFeaturedEvents();
+  const paths = events.map(event => ({ params: { eventId: event.id }}))
+
   return {
     paths: paths,
     fallback: 'blocking'
