@@ -28,3 +28,16 @@ export async function getEventIdParams() {
     const events = await getFeaturedEvents();
     return events.map(event => ({ params: { eventId: event.id }}))
 }
+
+export async function getFilteredEvents(dateFilter) {
+    const { year, month } = dateFilter;
+
+    const events = await getEvents();
+
+    let filteredEvents = events.filter((event) => {
+        const eventDate = new Date(event.date);
+        return eventDate.getFullYear() === year && eventDate.getMonth() === month - 1;
+    });
+
+    return filteredEvents;
+}
