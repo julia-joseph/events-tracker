@@ -1,21 +1,19 @@
-import classes from '../../styles/comment-list.module.css';
+import classes from "../../styles/comment-list.module.css";
 
-function CommentList() {
+function CommentList(props) {
+  const comments = props.comments;
   return (
     <ul className={classes.comments}>
-      {/* Render list of comments - fetched from API */}
-      <li>
-        <p>My comment is amazing!</p>
-        <div>
-          By <address>Jewels</address>
-        </div>
-      </li>
-      <li>
-        <p>My comment is more amazing!</p>
-        <div>
-          By <address>Roxy</address>
-        </div>
-      </li>
+      {comments &&
+        comments.map((comment) => (
+          <li key={comment.id}>
+            <p>{comment.text}</p>
+            <div>
+              By <address>{comment.name}</address>
+            </div>
+          </li>
+        ))}
+      {!comments && <p>No comments</p>}
     </ul>
   );
 }
