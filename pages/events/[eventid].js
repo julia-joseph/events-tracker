@@ -2,6 +2,7 @@ import EventItem from "../../components/events/event-item";
 import Head from "next/head";
 
 import {getEventById, getFeaturedEvents } from "../../utils/api-utils";
+import Comments from "../../components/input/comments";
 
 const EventPage = props => {
   const event = props.event;
