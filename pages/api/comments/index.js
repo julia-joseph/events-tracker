@@ -1,4 +1,4 @@
-import { buildPath, extractDataFromFile, writeToFile } from "../../../utils/data-utils";
+import { buildPath, extractDataFromFile } from "../../../utils/data-utils";
 
 const handler = (req, res) => {
     if (req.method === 'GET') {

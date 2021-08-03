@@ -1,4 +1,4 @@
-import { buildPath, extractDataFromFile, saveDataToFile, writeToFile } from "../../../utils/data-utils";
+import { buildPath, extractDataFromFile, saveDataToFile } from "../../../utils/data-utils";
 
 const handler = (req, res) => {
     if (req.method == 'POST') {
