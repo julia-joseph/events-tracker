@@ -29,6 +29,7 @@ const EventPage = props => {
           <p>Loading...</p>
         </div>
       }
+      <Comments eventId={event.id} />
     </div>
   )
 }
