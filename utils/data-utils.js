@@ -6,10 +6,10 @@ export function buildPath(filename) {
 }
 
 export function createPath(filePath) {
-    if(fs.existsSync(filePath)) return;
-    else {
-        fs.writeFileSync(filePath,"[]");
-    }
+  if (fs.existsSync(filePath)) return;
+  else {
+    fs.writeFileSync(filePath, "[]");
+  }
 }
 
 export function extractDataFromFile(filePath) {
@@ -20,5 +20,12 @@ export function extractDataFromFile(filePath) {
 }
 
 export function writeToFile(filePath, data) {
-    fs.writeFileSync(filePath, JSON.stringify(data));
+  fs.writeFileSync(filePath, JSON.stringify(data));
+}
+
+export function saveDataToFile(filename, newData) {
+  const filePath = buildPath(filename);
+  const data = extractDataFromFile(filePath);
+  data.push(newData);
+  writeToFile(filePath, data);
 }
