@@ -1,13 +1,13 @@
 import { buildPath, extractDataFromFile } from "../../../utils/data-utils";
 
 const handler = (req, res) => {
-    if (req.method === 'GET') {
-        const filePath = buildPath("comments.json");
+  if (req.method === "GET") {
+    const filePath = buildPath("comments.json");
 
-        const data = extractDataFromFile(filePath);
+    const data = extractDataFromFile(filePath);
 
-        res.status(200).json({ comments: data });
-    }
-}
+    res.status(200).json({ comments: data });
+  }
+};
 
 export default handler;
