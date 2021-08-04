@@ -1,8 +1,8 @@
-import {
-  buildPath,
-  extractDataFromFile,
-  saveDataToFile,
-} from "../../../../utils/data-utils";
+// import {
+//   buildPath,
+//   extractDataFromFile,
+//   saveDataToFile,
+// } from "../../../../utils/data-utils";
 
 const handler = (req, res) => {
   const eventId = req.query.eventId;
@@ -31,15 +31,16 @@ const handler = (req, res) => {
       text: text,
     };
 
-    saveDataToFile("comments" + eventId + ".json", newComment);
-    saveDataToFile("comments.json", newComment);
+    // saveDataToFile("comments" + eventId + ".json", newComment);
+    // saveDataToFile("comments.json", newComment);
 
     res.status(201).json({ message: "Success! Comment Added!", comments: newComment });
   }
 
   if (req.method === "GET") {
-    const filePath = buildPath("comments" + eventId + ".json");
-    const data = extractDataFromFile(filePath);
+    // const filePath = buildPath("comments" + eventId + ".json");
+    // const data = extractDataFromFile(filePath);
+    const data = [];
 
     res.status(200).json({ comments: data });
   }

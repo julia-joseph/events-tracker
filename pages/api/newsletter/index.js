@@ -1,8 +1,8 @@
-import {
-  buildPath,
-  extractDataFromFile,
-  saveDataToFile,
-} from "../../../utils/data-utils";
+// import {
+//   buildPath,
+//   extractDataFromFile,
+//   saveDataToFile,
+// } from "../../../utils/data-utils";
 
 const handler = (req, res) => {
   if (req.method == "POST") {
@@ -20,7 +20,7 @@ const handler = (req, res) => {
       email: email,
     };
 
-    saveDataToFile("newsletter.json", newSubscription);
+    //saveDataToFile("newsletter.json", newSubscription);
 
     res
       .status(201)
@@ -28,8 +28,9 @@ const handler = (req, res) => {
   }
 
   if (req.method === "GET") {
-    const filePath = buildPath("newsletter.json");
-    const data = extractDataFromFile(filePath);
+    // const filePath = buildPath("newsletter.json");
+    // const data = extractDataFromFile(filePath);
+    const data = [];
 
     res.status(200).json({ subscriptions: data });
   }
