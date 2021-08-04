@@ -1,11 +1,14 @@
-// import {
-//   buildPath,
-//   extractDataFromFile,
-//   saveDataToFile,
-// } from "../../../../utils/data-utils";
+import {
+  getClient,
+  getDB,
+  getDocumentsAsArray,
+  insertCollection,
+} from "../../../../utils/db-utils";
 
-const handler = (req, res) => {
+const handler = async (req, res) => {
   const eventId = req.query.eventId;
+
+  const client = await getClient();
 
   if (req.method === "POST") {
     const email = req.body.email;
@@ -25,25 +28,32 @@ const handler = (req, res) => {
     }
 
     const newComment = {
-      id: new Date().toISOString(),
+      eventId: eventId,
       email: email,
       name: name,
       text: text,
     };
 
-    // saveDataToFile("comments" + eventId + ".json", newComment);
-    // saveDataToFile("comments.json", newComment);
+    const db = getDB(client);
+    const result = await insertCollection(db, "comments", newComment);
+    console.log("result: ", result);
+    newComment.id = result.insertedId;
 
-    res.status(201).json({ message: "Success! Comment Added!", comments: newComment });
+    res
+      .status(201)
+      .json({ message: "Success! Comment Added!", comments: newComment });
   }
 
   if (req.method === "GET") {
-    // const filePath = buildPath("comments" + eventId + ".json");
-    // const data = extractDataFromFile(filePath);
-    const data = [];
+    const db = getDB(client);
+    const documents = await getDocumentsAsArray(db, "comments", {
+      eventId: eventId,
+    });
 
-    res.status(200).json({ comments: data });
+    res.status(200).json({ comments: documents });
   }
+
+  client.close();
 };
 
 export default handler;

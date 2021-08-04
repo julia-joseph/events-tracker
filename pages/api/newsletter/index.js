@@ -1,12 +1,13 @@
-// import {
-//   buildPath,
-//   extractDataFromFile,
-//   saveDataToFile,
-// } from "../../../utils/data-utils";
-
-import { MongoClient } from "mongodb";
+import {
+  getClient,
+  getDB,
+  getDocumentsAsArray,
+  insertCollection,
+} from "../../../utils/db-utils";
 
 const handler = async (req, res) => {
+  const client = await getClient();
+
   if (req.method == "POST") {
     const email = req.body.email;
 
@@ -18,18 +19,12 @@ const handler = async (req, res) => {
     }
 
     const newSubscription = {
-      id: new Date().toISOString(),
       email: email,
     };
 
-    //saveDataToFile("newsletter.json", newSubscription);
-
-    const client = await MongoClient.connect(
-      "mongodb+srv://<user>:<pass>@sandbox.dtugy.mongodb.net/newsletter?retryWrites=true&w=majority"
-    );
-    const db = client.db();
-    await db.collection("emails").insertOne({ email: email });
-    client.close();
+    const db = getDB(client);
+    const result = await insertCollection(db, "newsletter", newSubscription);
+    console.log("result: ", result);
 
     res.status(201).json({
       message: "Subscription Successful!",
@@ -38,12 +33,13 @@ const handler = async (req, res) => {
   }
 
   if (req.method === "GET") {
-    // const filePath = buildPath("newsletter.json");
-    // const data = extractDataFromFile(filePath);
-    const data = [];
+    const db = getDB(client);
+    const documents = await getDocumentsAsArray(db, "newsletter");
 
-    res.status(200).json({ subscriptions: data });
+    res.status(200).json({ subscriptions: documents });
   }
+
+  client.close();
 };
 
 export default handler;

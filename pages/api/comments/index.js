@@ -1,13 +1,16 @@
-// import { buildPath, extractDataFromFile } from "../../../utils/data-utils";
+import { getClient, getDB, getDocumentsAsArray } from "../../../utils/db-utils";
 
-const handler = (req, res) => {
+const handler = async (req, res) => {
+  const client = await getClient();
+
   if (req.method === "GET") {
-    // const filePath = buildPath("comments.json");
-    // const data = extractDataFromFile(filePath);
-    const data = [];
+    const db = getDB(client);
+    const documents = await getDocumentsAsArray(db, "comments");
 
-    res.status(200).json({ comments: data });
+    res.status(200).json({ comments: documents });
   }
+
+  client.close();
 };
 
 export default handler;
