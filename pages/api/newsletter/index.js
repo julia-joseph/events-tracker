@@ -4,7 +4,9 @@
 //   saveDataToFile,
 // } from "../../../utils/data-utils";
 
-const handler = (req, res) => {
+import { MongoClient } from "mongodb";
+
+const handler = async (req, res) => {
   if (req.method == "POST") {
     const email = req.body.email;
 
@@ -22,9 +24,17 @@ const handler = (req, res) => {
 
     //saveDataToFile("newsletter.json", newSubscription);
 
-    res
-      .status(201)
-      .json({ message: "Subscription Successful!", subscription: newSubscription });
+    const client = await MongoClient.connect(
+      "mongodb+srv://<user>:<pass>@sandbox.dtugy.mongodb.net/newsletter?retryWrites=true&w=majority"
+    );
+    const db = client.db();
+    await db.collection("emails").insertOne({ email: email });
+    client.close();
+
+    res.status(201).json({
+      message: "Subscription Successful!",
+      subscription: newSubscription,
+    });
   }
 
   if (req.method === "GET") {
