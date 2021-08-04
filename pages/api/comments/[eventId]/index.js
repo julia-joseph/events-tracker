@@ -19,7 +19,9 @@ const handler = (req, res) => {
         saveDataToFile("comments.json", newComment);
 
         res.status(201).json({ message: 'Success!', comments: newComment });
-    } else {
+    } 
+    
+    if (req.method === 'GET') {
         const filePath = buildPath("comments" + eventId + ".json");
         const data = extractDataFromFile(filePath);
 

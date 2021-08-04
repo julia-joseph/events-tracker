@@ -19,7 +19,9 @@ const handler = (req, res) => {
         saveDataToFile("newsletter.json", newSubscription);
 
         res.status(201).json({ message: 'Success!', subscription: newSubscription })
-    } else {
+    } 
+
+    if (req.method === 'GET') {
         const filePath = buildPath("newsletter.json");
         const data = extractDataFromFile(filePath);
 
