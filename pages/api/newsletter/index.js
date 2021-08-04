@@ -4,6 +4,13 @@ const handler = (req, res) => {
     if (req.method == 'POST') {
         const email = req.body.email;
 
+        if (!email || !email.includes('@')) {
+            res.send(422).json({
+                message: 'Invalid email address'
+            });
+            return;
+        }
+
         const newSubscription = {
             id: new Date().toISOString(),
             email: email
