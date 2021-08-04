@@ -7,15 +7,12 @@ export const getClient = async () => {
   return client;
 };
 
-export const getDB = (client) => {
-  return client.db();
-};
-
-export const insertCollection = async (db, collectionName, data) => {
+export const insertDocument = async (client, collectionName, data) => {
+  const db = client.db();
   return await db.collection(collectionName).insertOne(data);
 };
 
-export const getDocumentsAsArray = async (db, collectionName, filter = {}) => {
+export const getDocuments = async (db, collectionName, filter = {}) => {
   return await db
     .collection(collectionName)
     .find(filter)

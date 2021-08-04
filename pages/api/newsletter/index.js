@@ -1,12 +1,21 @@
 import {
   getClient,
-  getDB,
-  getDocumentsAsArray,
-  insertCollection,
+  getDocuments,
+  insertDocument,
 } from "../../../utils/db-utils";
 
 const handler = async (req, res) => {
-  const client = await getClient();
+  let client;
+
+  try {
+    client = await getClient();
+  } catch (error) {
+    res.status(500).json({
+      message: "Connecting to the database failed!",
+      error: error,
+    });
+    return;
+  }
 
   if (req.method == "POST") {
     const email = req.body.email;
@@ -15,6 +24,7 @@ const handler = async (req, res) => {
       res.status(422).json({
         message: "Invalid email address",
       });
+      client.close();
       return;
     }
 
@@ -22,21 +32,37 @@ const handler = async (req, res) => {
       email: email,
     };
 
-    const db = getDB(client);
-    const result = await insertCollection(db, "newsletter", newSubscription);
-    console.log("result: ", result);
+    try {
+      const result = await insertDocument(
+        client,
+        "newsletter",
+        newSubscription
+      );
 
-    res.status(201).json({
-      message: "Subscription Successful!",
-      subscription: newSubscription,
-    });
+      newSubscription._id = result.insertedId;
+
+      res.status(201).json({
+        message: "Subscription Successful!",
+        subscription: newSubscription,
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: "Inserting document into database failed",
+        error: error,
+      });
+    }
   }
 
   if (req.method === "GET") {
-    const db = getDB(client);
-    const documents = await getDocumentsAsArray(db, "newsletter");
-
-    res.status(200).json({ subscriptions: documents });
+    try {
+      const documents = await getDocuments(client, "newsletter");
+      res.status(200).json({ subscriptions: documents });
+    } catch (error) {
+      res.status(500).json({
+        message: "Fetching subscriptions from the database failed!",
+        error: error,
+      });
+    }
   }
 
   client.close();
